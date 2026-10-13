@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería — Leab Studios</title>
+  <meta name="description" content="Galería de trabajo de Leab Studios: identidad aplicada, contenido y dirección visual.">
+  <meta name="theme-color" content="#E12C2C">
+  <meta property="og:title" content="Leab Studios — Marketing Lab">
+  <meta property="og:description" content="Convertimos ideas en marcas relevantes a través de soluciones creativas, pensamiento estratégico y experiencias digitales.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="page-gallery">
+  <!-- Cursor -->
+  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="header__logo" aria-label="Leab Studios — inicio"><span class="logo-mask logo-mask--wordmark"></span></a>
+    <nav class="header__nav" aria-label="Principal">
+      <a href="index.html#estudio" data-hover>Estudio</a>
+      <a href="index.html#servicios" data-hover>Servicios</a>
+      <a href="index.html#campanas" data-hover>Campañas</a>
+      <a href="index.html#como-pensamos" data-hover>Cómo pensamos</a>
+      <a href="galeria.html" data-hover aria-current="page">Galería</a>
+      <a href="index.html#contacto" data-hover>Contacto</a>
+    </nav>
+    <a href="index.html#contacto" class="btn btn--small btn--red header__cta" data-magnetic><span>Hablemos</span></a>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu__nav" aria-label="Menú móvil">
+      <a href="index.html#estudio"><i>01</i>Estudio</a>
+      <a href="index.html#servicios"><i>02</i>Servicios</a>
+      <a href="index.html#campanas"><i>03</i>Campañas</a>
+      <a href="index.html#como-pensamos"><i>04</i>Cómo pensamos</a>
+      <a href="galeria.html"><i>05</i>Galería</a>
+      <a href="index.html#contacto"><i>06</i>Contacto</a>
+    </nav>
+    <div class="menu__foot">
+      <a href="mailto:hello@leabstudios.com">hello@leabstudios.com</a>
+      <a href="https://www.instagram.com/leabstudios" target="_blank" rel="noopener">@leabstudios</a>
+    </div>
+    <span class="menu__ls logo-mask logo-mask--ls" aria-hidden="true"></span>
+  </div>
+
+  <main id="top">
+    <section class="gallery-hero">
+      <div class="services__pattern" aria-hidden="true"></div>
+      <a href="index.html" class="gallery-hero__back" data-hover>← Volver al inicio</a>
+      <p class="kicker kicker--cream">Trabajo</p>
+      <h1 class="display display--mega" data-split>Gale<br>ría</h1>
+      <p class="gallery-hero__script script" aria-hidden="true">de trabajo</p>
+      <p class="gallery-hero__lead" data-reveal>Identidad aplicada, contenido y dirección visual. Una mirada a cómo se ve una marca cuando cada pieza habla el mismo idioma.</p>
+      <img class="gallery-hero__hand" src="assets/img/hand-shaka.webp" alt="" width="900" height="1060">
+    </section>
+
+    <section class="gallery section" aria-label="Galería">
+      <div class="filters" role="group" aria-label="Filtrar galería">
+        <button class="filter is-active" data-filter="all" aria-pressed="true">Todo</button>
+        <button class="filter" data-filter="branding" aria-pressed="false">Identidad aplicada</button>
+        <button class="filter" data-filter="contenido" aria-pressed="false">Contenido</button>
+        <button class="filter" data-filter="direccion" aria-pressed="false">Dirección visual</button>
+      </div>
+      <div class="g-grid">
+      <figure class="g-item" data-cat="branding" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/mock-notebook.webp" data-caption="Identidad aplicada — Cuaderno editorial" aria-label="Ampliar: Cuaderno editorial">
+          <img src="assets/img/mock-notebook.webp" alt="Cuaderno editorial" loading="lazy" width="1000" height="1334">
+        </button>
+        <figcaption><span>Identidad aplicada</span>Cuaderno editorial</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="branding" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/mock-mug.webp" data-caption="Identidad aplicada — Taza de marca" aria-label="Ampliar: Taza de marca">
+          <img src="assets/img/mock-mug.webp" alt="Taza de marca" loading="lazy" width="1000" height="700">
+        </button>
+        <figcaption><span>Identidad aplicada</span>Taza de marca</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="direccion" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/red-heels.webp" data-caption="Dirección visual — Opulencia en rojo" aria-label="Ampliar: Opulencia en rojo">
+          <img src="assets/img/red-heels.webp" alt="Opulencia en rojo" loading="lazy" width="1300" height="1950">
+        </button>
+        <figcaption><span>Dirección visual</span>Opulencia en rojo</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="branding" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/mock-sweater.webp" data-caption="Identidad aplicada — Merch &amp; regalos" aria-label="Ampliar: Merch &amp; regalos">
+          <img src="assets/img/mock-sweater.webp" alt="Merch &amp; regalos" loading="lazy" width="1000" height="700">
+        </button>
+        <figcaption><span>Identidad aplicada</span>Merch &amp; regalos</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="contenido" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/cherry.webp" data-caption="Contenido — Still life editorial" aria-label="Ampliar: Still life editorial">
+          <img src="assets/img/cherry.webp" alt="Still life editorial" loading="lazy" width="290" height="430">
+        </button>
+        <figcaption><span>Contenido</span>Still life editorial</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="branding" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/mock-phone.webp" data-caption="Identidad aplicada — Pantalla de inicio" aria-label="Ampliar: Pantalla de inicio">
+          <img src="assets/img/mock-phone.webp" alt="Pantalla de inicio" loading="lazy" width="1000" height="667">
+        </button>
+        <figcaption><span>Identidad aplicada</span>Pantalla de inicio</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="direccion" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/red-room.webp" data-caption="Dirección visual — Espacios que hablan" aria-label="Ampliar: Espacios que hablan">
+          <img src="assets/img/red-room.webp" alt="Espacios que hablan" loading="lazy" width="1800" height="1201">
+        </button>
+        <figcaption><span>Dirección visual</span>Espacios que hablan</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="contenido" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/phone.webp" data-caption="Contenido — Objetos con carácter" aria-label="Ampliar: Objetos con carácter">
+          <img src="assets/img/phone.webp" alt="Objetos con carácter" loading="lazy" width="700" height="430">
+        </button>
+        <figcaption><span>Contenido</span>Objetos con carácter</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="branding" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/mock-stationery.webp" data-caption="Identidad aplicada — Papelería" aria-label="Ampliar: Papelería">
+          <img src="assets/img/mock-stationery.webp" alt="Papelería" loading="lazy" width="1000" height="750">
+        </button>
+        <figcaption><span>Identidad aplicada</span>Papelería</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="contenido" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/turtleneck.webp" data-caption="Contenido — Retrato de campaña" aria-label="Ampliar: Retrato de campaña">
+          <img src="assets/img/turtleneck.webp" alt="Retrato de campaña" loading="lazy" width="285" height="362">
+        </button>
+        <figcaption><span>Contenido</span>Retrato de campaña</figcaption>
+      </figure>
+      <figure class="g-item" data-cat="branding" data-reveal>
+        <button class="g-item__btn" data-src="assets/img/mock-laptop.webp" data-caption="Identidad aplicada — Stickers" aria-label="Ampliar: Stickers">
+          <img src="assets/img/mock-laptop.webp" alt="Stickers" loading="lazy" width="1000" height="666">
+        </button>
+        <figcaption><span>Identidad aplicada</span>Stickers</figcaption>
+      </figure>
+      </div>
+    </section>
+
+    <section class="gallery-cta">
+      <p class="kicker kicker--cream">¿Tu marca es la siguiente?</p>
+      <h2 class="display display--xl" data-split>Hagamos algo <span class="script script--accent">juntos</span></h2>
+      <a href="index.html#contacto" class="btn btn--cream" data-magnetic><span>Iniciar un proyecto</span></a>
+    </section>
+  </main>
+
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <button class="lightbox__close" aria-label="Cerrar">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" aria-label="Anterior">←</button>
+    <figure class="lightbox__fig">
+      <img alt="">
+      <figcaption></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" aria-label="Siguiente">→</button>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <nav aria-label="Pie de página">
+        <a href="index.html#estudio" data-hover>Estudio</a>
+        <a href="index.html#servicios" data-hover>Servicios</a>
+        <a href="index.html#campanas" data-hover>Campañas</a>
+        <a href="index.html#como-pensamos" data-hover>Cómo pensamos</a>
+        <a href="galeria.html" data-hover>Galería</a>
+        <a href="index.html#contacto" data-hover>Contacto</a>
+      </nav>
+      <a href="#top" class="footer__up" data-hover>Volver arriba ↑</a>
+    </div>
+    <div class="footer__logo" aria-hidden="true"><span class="logo-mask logo-mask--lockup"></span></div>
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> Leab Studios</span>
+      <span>Marketing lab · Est. 2020</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

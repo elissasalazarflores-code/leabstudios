@@ -78,7 +78,11 @@
     countEl.textContent = pct;
     fill.style.setProperty('--p', `${100 - pct}%`);
     if (pct >= 100) return finishLoader();
-    requestAnimationFrame(tickLoader);
+    if (loader) requestAnimationFrame(tickLoader);
+  else {
+    body.classList.add('is-ready', 'intro-done');
+    body.classList.remove('is-loading');
+  }
   };
   const finishLoader = () => {
     clearTimeout(maxWait);
@@ -90,7 +94,11 @@
     }, reduced ? 50 : 1100);
     setTimeout(() => body.classList.add('intro-done'), reduced ? 100 : 2600);
   };
-  requestAnimationFrame(tickLoader);
+  if (loader) requestAnimationFrame(tickLoader);
+  else {
+    body.classList.add('is-ready', 'intro-done');
+    body.classList.remove('is-loading');
+  }
 
   /* ---------- Hero letters wobble on hover ---------- */
   $$('.wm-l').forEach(l => {
@@ -139,6 +147,64 @@
     $('.svc__row', svcItems[0]).setAttribute('aria-expanded', 'true');
   }
 
+  /* ---------- Gallery: filters + lightbox ---------- */
+  const gItems = $$('.g-item');
+  $$('.filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      $$('.filter').forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      gItems.forEach(it => {
+        it.classList.toggle('is-hidden', f !== 'all' && it.dataset.cat !== f);
+        it.classList.add('is-in');
+      });
+    });
+  });
+
+  const lb = $('.lightbox');
+  if (lb) {
+    const lbImg = $('img', lb);
+    const lbCap = $('figcaption', lb);
+    let lbIndex = 0;
+    let lastFocus = null;
+    const visible = () => gItems.filter(it => !it.classList.contains('is-hidden')).map(it => $('.g-item__btn', it));
+    const show = i => {
+      const list = visible();
+      lbIndex = (i + list.length) % list.length;
+      const b = list[lbIndex];
+      lbImg.src = b.dataset.src;
+      lbImg.alt = $('img', b).alt;
+      lbCap.textContent = b.dataset.caption;
+    };
+    const open = btn => {
+      lastFocus = btn;
+      show(visible().indexOf(btn));
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+      body.classList.add('lightbox-open');
+      $('.lightbox__close', lb).focus();
+    };
+    const close = () => {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      body.classList.remove('lightbox-open');
+      if (lastFocus) lastFocus.focus();
+    };
+    $$('.g-item__btn').forEach(b => b.addEventListener('click', () => open(b)));
+    $('.lightbox__close', lb).addEventListener('click', close);
+    $('.lightbox__nav--prev', lb).addEventListener('click', () => show(lbIndex - 1));
+    $('.lightbox__nav--next', lb).addEventListener('click', () => show(lbIndex + 1));
+    lb.addEventListener('click', e => e.target === lb && close());
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(lbIndex - 1);
+      if (e.key === 'ArrowRight') show(lbIndex + 1);
+    });
+  }
+
   /* ---------- Contact form → mailto ---------- */
   const form = $('[data-form]');
   if (form) {
@@ -166,10 +232,6 @@
   const mouse = { x: innerWidth / 2, y: innerHeight / 2 };
   const cursor = $('.cursor');
   const cur = { x: mouse.x, y: mouse.y };
-  const svcFloat = $('.svc-float');
-  const svcImg = svcFloat && $('img', svcFloat);
-  const flt = { x: mouse.x, y: mouse.y, r: 0 };
-  let svcActive = false;
 
   if (finePointer && !reduced) {
     window.addEventListener('pointermove', e => {
@@ -192,7 +254,7 @@
       el.addEventListener('mouseenter', () => setLabel('Abrir'));
       el.addEventListener('mouseleave', () => setLabel(''));
     });
-    $$('.tile, .frame').forEach(el => {
+    $$('.tile, .frame, .g-item__btn').forEach(el => {
       el.addEventListener('mouseenter', () => setLabel('Ver'));
       el.addEventListener('mouseleave', () => setLabel(''));
     });
@@ -222,20 +284,6 @@
       });
       el.addEventListener('pointerleave', () => (el.style.transform = ''));
     });
-
-    // Service floating image
-    svcItems.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        const src = item.dataset.img;
-        if (svcImg.getAttribute('src') !== src) svcImg.src = src;
-        svcActive = true;
-        svcFloat.classList.add('is-on');
-      });
-      item.addEventListener('mouseleave', () => {
-        svcActive = false;
-        svcFloat.classList.remove('is-on');
-      });
-    });
   }
 
   /* ---------- Scroll-driven effects ---------- */
@@ -245,7 +293,7 @@
   const marquee = $('[data-marquee]');
   const hsec = $('.hscroll');
   const htrack = $('[data-htrack]');
-  const redZones = '.services, .contact, .panel--red, .panel--dash, .marquee, .footer, .menu';
+  const redZones = '.gallery-hero, .services, .contact, .panel--red, .panel--dash, .marquee, .footer, .menu';
   let lastY = scrollY;
   let velocity = 0;
   let mqX = 0;
@@ -272,7 +320,7 @@
   const isOnRed = (x, y) => {
     const els = document.elementsFromPoint(x, y);
     for (const el of els) {
-      if (el.closest('.header, .cursor, .svc-float, .progress')) continue;
+      if (el.closest('.header, .cursor, .progress, .lightbox')) continue;
       return !!el.closest(redZones);
     }
     return false;
@@ -344,17 +392,6 @@
       cur.y = lerp(cur.y, mouse.y, 0.22);
       cursor.style.transform = `translate3d(${cur.x}px,${cur.y}px,0)`;
       if (frame % 5 === 0) cursor.classList.toggle('on-red', isOnRed(mouse.x, mouse.y));
-
-      if (svcFloat) {
-        const nx = lerp(flt.x, mouse.x, 0.12);
-        const vx = nx - flt.x;
-        flt.x = nx;
-        flt.y = lerp(flt.y, mouse.y, 0.12);
-        flt.r = lerp(flt.r, clamp(vx * 0.6, -14, 14), 0.1);
-        if (svcActive || flt.r !== 0) {
-          svcFloat.style.transform = `translate3d(${flt.x + 30}px,${flt.y - 140}px,0) rotate(${flt.r}deg)`;
-        }
-      }
     }
 
     requestAnimationFrame(loop);
